@@ -1,7 +1,12 @@
 <p align="center">
 <a href="https://github.com/philosss/TrustIt."><img src="https://github.com/philosss/TrustIt./blob/master/Graphics/exports/full-logo-b-bg-2x.png?raw=true" width="500px"></a>
 </p>
-Universidad Politécnica de Madrid
+
+Authors: [@boyraaijmakers](https://github.com/boyraaijmakers) [@mkpaszkiewicz](https://github.com/mkpaszkiewicz)  [@philosss](https://github.com/philosss)  [@jackiefeen](https://github.com/jackiefeen)
+
+
+Universidad Politécnica de Madrid, Spain 🌞
+
 
 TADHack 2018 💻
 
@@ -18,5 +23,5 @@ TADHack 2018 💻
 
 
 <p align="center">
-<a href="https://github.com/philosss/TrustIt."><img src="https://github.com/philosss/TrustIt./blob/master/Graphics/images/upm.png" width="300px"></a>
+<a href="http://upm.es/"><img src="https://github.com/philosss/TrustIt./blob/master/Graphics/images/upm.png" width="300px"></a>
 </p>

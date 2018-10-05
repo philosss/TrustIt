@@ -11,9 +11,9 @@ Universidad Politécnica de Madrid, Spain 🌞
 TADHack 2018 💻
 
 ## Palette of Colors
-- Background gradient from #028090 to #05668D, angle 270°
-- Presentation logo #DEDEDE
-- Logo #F8F5F5
+- Background gradient from ![#028090](https://placehold.it/15/028090/000000?text=+) `#028090` to ![#05668D](https://placehold.it/15/05668D/000000?text=+) `#05668D`, angle 270°
+- Presentation logo ![#DEDEDE](https://placehold.it/15/DEDEDE/000000?text=+) `#DEDEDE`
+- Logo ![#F8F5F5](https://placehold.it/15/F8F5F5/000000?text=+) `#F8F5F5`
 
 
 ## Credits

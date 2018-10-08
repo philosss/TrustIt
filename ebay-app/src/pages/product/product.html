@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ProductPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Product {{product.name | uppercase }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <ion-card *ngIf="product">
+          <img src="{{BaseURL + product.image}}"/>
+          <ion-card-content>
+            <ion-card-title>
+              {{product.name | uppercase}}
+            </ion-card-title>
+            <p>
+              {{product.description}}
+            </p>
+          </ion-card-content>
+          <ion-row>
+            <ion-col>
+              <button ion-button icon-left clear small>
+                <ion-icon name="pricetag"></ion-icon>
+                <div>€{{ product.price }}</div>
+              </button>
+            </ion-col>
+            <ion-col>
+              <button ion-button icon-left clear small (click)="viewTrustitChain()">
+                <ion-icon name="paper"></ion-icon>
+                <div>LOGO</div>
+              </button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+        <div [hidden]="product || errMess">
+          <ion-spinner></ion-spinner>
+          <h4>Loading . . . Please Wait</h4>
+        </div>
+        <div *ngIf="errMess">
+          <h2>Error</h2>
+          <h4>{{errMess}}</h4>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

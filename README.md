@@ -10,6 +10,14 @@ Universidad Politécnica de Madrid, Spain 🌞
 
 TADHack 2018 💻
 
+## Commands
+- `fabric/fabric-dev-servers/startFabric.sh` starts Fabric
+- `composer-playground` starts composer playground
+- `fabric/fabric-dev-servers/stopFabric.sh` stops Fabric
+- `fabric-dev-servers/teardownFabric.sh` terminate Fabric development
+
+
+
 ## Palette of Colors
 - Background gradient from ![#028090](https://placehold.it/15/028090/000000?text=+) `#028090` to ![#05668D](https://placehold.it/15/05668D/000000?text=+) `#05668D`, angle 270°
 - Presentation logo ![#DEDEDE](https://placehold.it/15/DEDEDE/000000?text=+) `#DEDEDE`

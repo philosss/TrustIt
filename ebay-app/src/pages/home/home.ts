@@ -27,7 +27,6 @@ export class HomePage implements OnInit {
   }
 
   productSelected(event, product) {
-    // That's right, we're pushing to ourselves!
     this.navCtrl.push(ProductPage, {
       product: product
     });

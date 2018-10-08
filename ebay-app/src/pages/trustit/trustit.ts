@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { TrustitProvider } from '../../providers/trustit/trustit';
+
+import { ChainItem } from '../../shared/chain_item';
 
 /**
  * Generated class for the TrustitPage page.
@@ -15,8 +18,24 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class TrustitPage {
 
+  prodId: string;
+
+  chain: ChainItem[];
+  errMsg: string;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  	private viewCtrl: ViewController) {
+  	private viewCtrl: ViewController,
+    private trustitProvider: TrustitProvider) {
+
+    this.prodId = navParams.get('prodId');
+
+    this.trustitProvider.getByKey(this.prodId)
+      .subscribe(
+        chain => {
+          this.chain = chain
+        },
+        errmess => this.errMsg = <any>errmess
+      );
   }
 
   ionViewDidLoad() {

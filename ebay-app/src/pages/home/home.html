@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Available Products
+      Search Results: Bikes
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -11,13 +11,13 @@
   <div *ngIf="products">
     <ion-grid>
       <ion-row>
-        <ion-col col-12 col-lg-4 *ngFor="let product of products">
-          <ion-card (click)="productSelected($event, product)">
-            <img src="{{BaseURL + product.image}}" />
-            <div class="card-title">{{ product.name }}</div>
-            <div class="card-subtitle">{{ product.description }}</div>
-          </ion-card>
-        </ion-col>
+        <ion-list>
+          <ion-item class="products-list" *ngFor="let product of products" (click)="productSelected($event, product)" text-wrap fxFlex>
+            <img width="30%" src="{{BaseURL + product.image}}" item-start>
+            <h2 class="product-title">{{product.name}}</h2>
+            <h1 class="price-tag" text-wrap>  €{{product.price}}</h1>
+          </ion-item>
+        </ion-list>
       </ion-row>
     </ion-grid>
   </div>

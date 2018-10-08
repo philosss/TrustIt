@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Available Products
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+  <div *ngIf="products">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12 col-lg-4 *ngFor="let product of products">
+          <ion-card (click)="productSelected($event, product)">
+            <img src="{{BaseURL + product.image}}" />
+            <div class="card-title">{{ product.name }}</div>
+            <div class="card-subtitle">{{ product.description }}</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div [hidden]="products || errMess" text-center>
+    <ion-spinner></ion-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</ion-content>

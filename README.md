@@ -12,10 +12,32 @@ TADHack 2018 💻
 
 ## Commands
 - `fabric/fabric-dev-servers/startFabric.sh` starts Fabric
-- `composer-playground` starts composer playground
 - `fabric/fabric-dev-servers/stopFabric.sh` stops Fabric
 - `fabric-dev-servers/teardownFabric.sh` terminate Fabric development
 
+## Installation and deployment
+First start fabric and browse to the app folder
+```
+fabric/fabric-dev-servers/startFabric.sh
+cd fabric/composer/trustit
+```
+### 1. Install the business network
+
+```
+composer network install --card PeerAdmin@hlfv1 --archiveFile trustit@0.0.1.bna
+```
+### 2. Start the business network
+```
+composer network start --networkName trustit --networkVersion 0.0.1 --networkAdmin admin --networkAdminEnrollSecret adminpw --card PeerAdmin@hlfv1 --file networkadmin.card
+```
+### 3. Import the network administration identity
+```
+composer card import --file networkadmin.card
+```
+### 4. Check installation
+```
+composer network ping --card admin@trustit
+```
 
 
 ## Palette of Colors

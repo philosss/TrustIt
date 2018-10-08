@@ -16,6 +16,7 @@ import { HttpModule } from '@angular/http';
 import {HttpClientModule} from "@angular/common/http";
 
 import { baseUrl } from "../shared/baseUrl";
+import { TrustitProvider } from '../providers/trustit/trustit';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { baseUrl } from "../shared/baseUrl";
     ProductProvider,
     { provide: 'BaseURL', useValue: baseUrl },
     ProcessHttpmsgProvider,
+    TrustitProvider,
   ]
 })
 export class AppModule {}

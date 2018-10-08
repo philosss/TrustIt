@@ -30,7 +30,9 @@ export class ProductPage {
   	}
 
     viewTrustitChain() {
-        let modal = this.modalCtrl.create(TrustitPage);
+        let modal = this.modalCtrl.create(TrustitPage, 
+          {prodId: this.product.id}
+        );
         modal.present();
     }
 

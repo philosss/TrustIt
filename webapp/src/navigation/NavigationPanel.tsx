@@ -17,7 +17,7 @@ import {styles} from "./styles";
 import * as AppActionCreators from "../actions/Actions";
 import {ApplicationProps} from "../actions/Actions";
 import {AccountPage} from "../pages/Account";
-import {PossessionsPage} from "../pages/Possessions";
+import PossessionsPage from "../pages/Possessions";
 import {getNotifications} from "../selectors/Notifications";
 import {AppState, isAuthenticated} from "../state/AppState";
 import {Notification} from "../state/Notification";

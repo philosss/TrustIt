@@ -1,6 +1,7 @@
 import {match} from "react-router";
 import {Utility} from "../state/Utility";
 import {User} from "../state/User";
+import {Notification} from "../state/Notification";
 import {AppAction, ActionType} from "./Helpers";
 
 export interface ApplicationProps {
@@ -13,7 +14,7 @@ export interface ApplicationProps {
     history: any,
     utility: Utility;
     authentication: User;
-    notifications: any[];
+    notifications: Notification[];
 }
 
 export const openDrawer = (): AppAction => {

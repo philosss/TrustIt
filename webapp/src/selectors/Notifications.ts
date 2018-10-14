@@ -1,5 +1,5 @@
 import {AppState} from "../state/AppState";
-import {Notification} from "../state/Notification"
+import {Notification} from "../state/Notification";
 import {createSelector} from "reselect";
 
 const notificationSelector = (state: AppState) => state.notifications;

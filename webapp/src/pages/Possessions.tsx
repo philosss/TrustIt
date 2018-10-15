@@ -22,6 +22,7 @@ import {
     TableHead,
     TableRow
 } from "@material-ui/core";
+import AddIcon from '@material-ui/icons/Add';
 import {getPossessions} from "../selectors/Possessions";
 import {Possession} from "../state/Possession";
 import {AppState} from "../state/AppState";
@@ -34,12 +35,14 @@ interface PossessionsPageProps {
 interface PossessionsPageState {
     transferFormOpen: boolean;
     possessionHistoryOpen: boolean;
+    possessionFormOpen: boolean;
 }
 
 class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsPageState> {
     public state: PossessionsPageState = {
         transferFormOpen: false,
         possessionHistoryOpen: false,
+        possessionFormOpen: false,
     };
 
     private handleTransferFormClickOpen = () => {
@@ -138,6 +141,60 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
         );
     }
 
+    private handlePossessionFormClickOpen = () => {
+        this.setState({possessionFormOpen: true});
+    };
+
+    private handlePossessionFormClose = () => {
+        this.setState({possessionFormOpen: false});
+    };
+
+    private renderPossessionForm(): JSX.Element {
+        return (
+            <Dialog
+                open={this.state.possessionFormOpen}
+                onClose={this.handleTransferFormClose}
+                aria-labelledby="form-dialog-title"
+            >
+                <DialogTitle id="form-dialog-title">Add possession</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        autoFocus={true}
+                        margin="dense"
+                        id="name"
+                        label="Name"
+                        type="name"
+                        fullWidth={true}
+                    />
+                    <TextField
+                        autoFocus={true}
+                        margin="dense"
+                        id="description"
+                        label="Description"
+                        type="description"
+                        fullWidth={true}
+                    />
+                    <TextField
+                        autoFocus={true}
+                        margin="dense"
+                        id="imageUrl"
+                        label="Image URL"
+                        type="imageUrl"
+                        fullWidth={true}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={this.handlePossessionFormClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button onClick={this.handlePossessionFormClose} color="primary">
+                        Add
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        );
+    }
+
     public render(): JSX.Element {
         const {classes} = this.props;
 
@@ -174,8 +231,12 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                         </Grid>
                     ))}
                 </Grid>
+                <Button onClick={this.handlePossessionFormClickOpen} variant="fab" color="secondary" aria-label="Add" className={classes.button}>
+                    <AddIcon />
+                </Button>
                 {this.renderTransferForm()}
                 {this.renderPossessionHistory()}
+                {this.renderPossessionForm()}
             </div>
         );
     }
@@ -201,6 +262,12 @@ const styles = {
     media: {
         width: 345,
         height: 250,
+    },
+    button: {
+        position: 'absolute',
+        margin: 16,
+        bottom: 16,
+        right: 16,
     }
 };
 
@@ -208,4 +275,4 @@ const mapStateToProps = (state: AppState) => ({
     possessions: getPossessions(state)
 });
 
-export default connect(mapStateToProps)(withStyles(styles, {withTheme: true})(PossessionsPage as any) as any);
+export default connect(mapStateToProps)(withStyles(styles as any, {withTheme: true})(PossessionsPage as any) as any);

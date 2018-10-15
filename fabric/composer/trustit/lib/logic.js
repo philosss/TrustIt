@@ -4,7 +4,7 @@
  * @transaction
  */
 async function tradeCommodity(trade) {
-	trade.commodity.owner = trade.newOwner;
-	let assetRegistry = await getAssetRegistry('org.upm.trustit.network.Commodity');
-	await assetRegistry.update(trade.commodity);
+	trade.good.owner = trade.newOwner;
+	let assetRegistry = await getAssetRegistry('org.upm.trustit.network.Good');
+	await assetRegistry.update(trade.good);
 }

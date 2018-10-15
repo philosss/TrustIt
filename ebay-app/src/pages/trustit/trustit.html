@@ -9,8 +9,7 @@
   <ion-toolbar color="primary-pale">
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Cancel</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        <span ion-text color="primary">Close</span>
       </button>
     </ion-buttons>
     <ion-title>TrustIt Chain</ion-title>
@@ -21,8 +20,12 @@
   <div *ngIf="chain">
 	<ion-row *ngFor="let item of chain">
 	    <ion-card>
-	      <div class="card-title">{{ item.owner }}</div>
-	      <div class="card-subtitle">{{ item.timestamp }}</div>
+	      <ion-card-title class="center">
+          {{ item.type }} - {{ item.owner }}
+        </ion-card-title>
+	      <p class="center">
+          {{ item.timestamp | date:'medium' }}
+        </p>
 	    </ion-card>
     </ion-row>
   </div>

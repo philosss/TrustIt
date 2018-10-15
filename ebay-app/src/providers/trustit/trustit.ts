@@ -30,7 +30,7 @@ export class TrustitProvider {
     }
 
 	public getByKey(trustitKey: string): Observable<ChainItem[]> {
-        return this.http.get(`http://localhost:3000/api/Trade?filter=%7B%22where%22%3A%20%7B%22commodity%22%3A%20%22resource%3Aorg.example.mynetwork.Commodity%23${trustitKey}%22%7D%7D`)
+        return this.http.get(`http://localhost:3000/api/Trade?filter=%7B%22where%22%3A%20%7B%22good%22%3A%20%22resource%3Aorg.upm.trustit.network.Good%23${trustitKey}%22%7D%7D`)
             .map(res => { return this.extractChain(res); })
             .catch(error => { return this.httpsMsg.handleError(error); });
     }
@@ -40,14 +40,18 @@ export class TrustitProvider {
         var resJson = res.json();
 
         for (let item of resJson) {
+
+            var split = item["newOwner"].split("#");
+            var typeClass = split[0].split(".");
+            var ownerType = typeClass[typeClass.length - 1];
+
             chain.push({
                 product: item["commodity"],
-                owner: item["newOwner"].split("#")[1],
+                owner: split[1],
+                type: ownerType,
                 timestamp: item["timestamp"]
             });
         }
-
-        console.log(chain);
 
         return chain;
     }

@@ -1,12 +1,40 @@
 /**
  * Access control rules for tutorial-network
  */
-rule Default {
-    description: "Allow all participants access to all resources"
-    participant: "ANY"
+
+rule R3_TradersSeeOwnHistoryOnly {
+  description: "Traders should be able to see the history of their own transactions only"
+  participant(t): "org.upm.trustit.network.Trader"
+  operation: READ
+  resource(v): "org.hyperledger.composer.system.HistorianRecord"
+  condition: (v.participantInvoking.getIdentifier() != t.getIdentifier())
+  action: DENY
+}
+
+rule R2_EnableTradeTxn {
+    description: "Enable Traders to submit transactions"
+    participant: "org.upm.trustit.network.Trader"
     operation: ALL
-    resource: "org.upm.trustit.network.*"
+    resource: "org.upm.trustit.network.Trade"
     action: ALLOW
+}
+
+rule R1b_TraderSeeTheirCommodities {
+  description: "Trader can see/work with their own Commodities"
+  participant(t): "org.upm.trustit.network.Trader"
+  operation: ALL
+  resource(c): "org.upm.trustit.network.Good"
+  condition: (c.owner.getIdentifier() == t.getIdentifier())
+  action: ALLOW
+}
+
+rule R1a_TraderSeeUpdateThemselvesOnly {
+  description: "Trader can see and update their own record only"
+  participant(t): "org.upm.trustit.network.Trader"
+  operation: READ, UPDATE
+  resource(v): "org.upm.trustit.network.Trader"
+  condition: (v.getIdentifier() == t.getIdentifier())
+  action: ALLOW
 }
 
 rule SystemACL {

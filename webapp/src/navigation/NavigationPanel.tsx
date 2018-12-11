@@ -168,7 +168,7 @@ class NavigationPanel extends React.Component<NavigationPanelProps, NavigationPa
                             onClose={this.handleMenuClose.bind(this, null)}
                         >
                             <MenuItem
-                                onClick={this.handleMenuClose.bind(this, '/account')}>{this.props.authentication.name}</MenuItem>
+                                onClick={this.handleMenuClose.bind(this, '/account')}>{this.props.authentication.firstName}</MenuItem>
                             <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
                         </Menu>
                     </div>

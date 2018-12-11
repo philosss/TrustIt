@@ -17,6 +17,7 @@
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
     "classnames": "^2.2.5",
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "immutable": "^3.8.2",
     "lodash": "^4.17.10",

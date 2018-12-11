@@ -20,6 +20,7 @@ export class TrustitPage {
 
   prodId: string;
 
+  current: ChainItem;
   chain: ChainItem[];
   errMsg: string;
 
@@ -32,7 +33,24 @@ export class TrustitPage {
     this.trustitProvider.getByKey(this.prodId)
       .subscribe(
         chain => {
-          this.chain = chain
+          if(chain.length > 1) {
+            chain.reverse();
+            this.current = chain.pop();
+            this.chain = chain;
+          } else if (chain.length == 1) {
+            this.current = chain[0];
+          } else {
+            this.current = new ChainItem({
+               productId: "",
+               owner: {
+                  id: "Not found",
+                  first: "",
+                  last: ""
+               },
+               timestamp: ""
+            });
+          }
+          
         },
         errmess => this.errMsg = <any>errmess
       );

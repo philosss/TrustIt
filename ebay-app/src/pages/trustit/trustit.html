@@ -17,19 +17,30 @@
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="chain">
-	<ion-row *ngFor="let item of chain">
-	    <ion-card>
+  <div *ngIf="chain || current">
+	  <ion-row *ngFor="let item of chain">
+	    <ion-card *ngIf="chain">
 	      <ion-card-title class="center">
           {{ item.type }} - {{ item.owner }}
         </ion-card-title>
 	      <p class="center">
-          {{ item.timestamp | date:'medium' }}
+          <b>Acquired: </b>{{ item.timestamp | date:'medium' }}
         </p>
 	    </ion-card>
     </ion-row>
+    <ion-row *ngIf="current">
+      <ion-card>
+        <ion-card-title class="center">
+          <b>{{ current.type }} - {{ current.owner }}</b>
+          <p>Current owner</p>
+        </ion-card-title>
+        <p class="center">
+          <b>Acquired: </b>{{ current.timestamp | date:'medium' }}
+        </p>
+      </ion-card>
+    </ion-row>
   </div>
-  <div [hidden]="chain || errMess" text-center>
+  <div [hidden]="chain || current || errMess" text-center>
     <ion-spinner></ion-spinner>
     <h4>Loading . . . Please Wait</h4>
   </div>

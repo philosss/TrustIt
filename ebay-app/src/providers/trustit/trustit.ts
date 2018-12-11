@@ -30,7 +30,7 @@ export class TrustitProvider {
     }
 
 	public getByKey(trustitKey: string): Observable<ChainItem[]> {
-        return this.http.get(`http://65.52.159.60:3000/api/Trade?filter=%7B%22where%22%3A%20%7B%22good%22%3A%20%22resource%3Aorg.upm.trustit.network.Good%23${trustitKey}%22%7D%7D`)
+        return this.http.get(`http://65.52.159.90:3000/api/Trade?filter=%7B%22where%22%3A%20%7B%22good%22%3A%20%22resource%3Aorg.upm.trustit.network.Good%23${trustitKey}%22%7D%7D`)
             .map(res => { return this.extractChain(res); })
             .catch(error => { return this.httpsMsg.handleError(error); });
     }

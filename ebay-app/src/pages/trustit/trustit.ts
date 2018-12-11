@@ -20,7 +20,7 @@ export class TrustitPage {
 
   prodId: string;
 
-  current: ChainItem;
+  current: {};
   chain: ChainItem[];
   errMsg: string;
 
@@ -40,16 +40,13 @@ export class TrustitPage {
           } else if (chain.length == 1) {
             this.current = chain[0];
           } else {
-            this.current = new ChainItem({
-               productId: "",
-               owner: {
-                  id: "Not found",
-                  first: "",
-                  last: ""
-               },
-               timestamp: ""
-            });
+            this.current = {
+               owner: "",
+               timestamp: "",
+               type: "Not registered"
+            };
           }
+          console.log(this.current);
           
         },
         errmess => this.errMsg = <any>errmess

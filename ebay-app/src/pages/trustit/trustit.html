@@ -28,7 +28,7 @@
         </p>
 	    </ion-card>
     </ion-row>
-    <ion-row *ngIf="current">
+    <ion-row *ngIf="current && current.owner">
       <ion-card>
         <ion-card-title class="center">
           <b>{{ current.type }} - {{ current.owner }}</b>
@@ -38,6 +38,14 @@
           <b>Acquired: </b>{{ current.timestamp | date:'medium' }}
         </p>
       </ion-card>
+    </ion-row>
+    <ion-row *ngIf="!current.owner">
+      <ion-card-title class="center">
+        <ion-card-title class="center" >
+          <b>Not Registered with TrustIt</b>
+        </ion-card-title>
+        <p>Unfortunately, TrustIt cannot verify the chain of owners.</p>
+      </ion-card-title>
     </ion-row>
   </div>
   <div [hidden]="chain || current || errMess" text-center>

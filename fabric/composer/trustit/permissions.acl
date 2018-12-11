@@ -42,7 +42,7 @@
      participant(m): "org.upm.trustit.network.Trader"
      operation: UPDATE
      resource(v): "org.upm.trustit.network.Good"
-     transaction(tx): "org.upm.trustit.network.SalesTransaction"
+     transaction(tx): "org.upm.trustit.network.Trade"
      condition: (v.owner.getIdentifier() == m.getIdentifier())
      action: DENY
  }

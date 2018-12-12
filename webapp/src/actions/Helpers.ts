@@ -8,7 +8,8 @@ export enum ActionType {
     LOGOUT_REQUEST,
     LOGOUT_SUCCESS,
     LOGOUT_FAIL,
-    FETCH_POSSESSIONS
+    FETCH_POSSESSIONS,
+    FETCH_TRANSACTIONS
 }
 
 export interface AppAction extends Action<ActionType> {

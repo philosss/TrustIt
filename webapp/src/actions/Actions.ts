@@ -11,7 +11,6 @@ export interface ApplicationProps {
     closeDrawer: () => AppAction;
     login: (data: any) => any;
     logout: () => AppAction;
-    fetchPossessions: (traderId: string) => any;
     match: match<any>,
     location: any,
     history: any,
@@ -55,10 +54,27 @@ export const logout = (): AppAction => {
 export const fetchPossessions = (traderId: string): any => {
     return (dispatch: any) => {
         console.log(traderId);
-        return axios.get("http://localhost:3000/api/Good?" + "{\"where\": {\"owner\": \"resource:org.upm.trustit.network.Person#" + traderId + "}}")
+        console.log("http://localhost:3000/api/Good?filter=%7B%22where%22%3A%7B%22owner%22%3A%22resource%3Aorg.upm.trustit.network.Person%23" + traderId + "%22%7D%7D");
+        return axios.get("http://localhost:3000/api/Good?filter=%7B%22where%22%3A%7B%22owner%22%3A%22resource%3Aorg.upm.trustit.network.Person%23" + traderId + "%22%7D%7D")
             .then((response) => {
+                console.log(response);
                 console.log(response.data);
-                dispatch({type: ActionType.FETCHED_POSSESSIONS});
+                dispatch({type: ActionType.FETCH_POSSESSIONS, payload: response.data});
+            });
+    };
+};
+
+export const addPossession = (name: string, desc: string, imageUrl: string, ownerId: string): any => {
+    return (dispatch: any) => {
+        return axios.post('http://localhost:3000/api/Good', {
+            goodId: name,
+            description: desc,
+            photos: [imageUrl],
+            owner: "resource:org.upm.trustit.network.Person#" + ownerId
+
+        })
+            .then((response) => {
+                dispatch(fetchPossessions(ownerId));
             });
     };
 };

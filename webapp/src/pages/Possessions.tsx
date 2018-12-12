@@ -22,13 +22,16 @@ import {
     TableHead,
     TableRow
 } from "@material-ui/core";
-import AddIcon from '@material-ui/icons/Add';
-import {getPossessions} from "../selectors/Possessions";
+import AddIcon from "@material-ui/icons/Add";
 import {Possession} from "../state/Possession";
 import {AppState} from "../state/AppState";
+import {addPossession, fetchPossessions} from "../actions/Actions";
 
 interface PossessionsPageProps {
     classes?: any;
+    traderId: string;
+    fetchPossessions: (traderId: string) => any;
+    addPossession: (name: string, description: string, imageUrl: string, ownerId: string) => any;
     possessions: Possession[];
 }
 
@@ -36,6 +39,9 @@ interface PossessionsPageState {
     transferFormOpen: boolean;
     possessionHistoryOpen: boolean;
     possessionFormOpen: boolean;
+    name: string;
+    description: string;
+    imageUrl: string;
 }
 
 class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsPageState> {
@@ -43,6 +49,9 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
         transferFormOpen: false,
         possessionHistoryOpen: false,
         possessionFormOpen: false,
+        name: "",
+        description: "",
+        imageUrl: ""
     };
 
     private handleTransferFormClickOpen = () => {
@@ -149,6 +158,23 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
         this.setState({possessionFormOpen: false});
     };
 
+    private handleNameChange = (event: any) => {
+        this.setState({name: event.target.value})
+    };
+
+    private handleDescriptionChange = (event: any) => {
+        this.setState({description: event.target.value})
+    };
+
+    private handleImageUrlChange = (event: any) => {
+        this.setState({imageUrl: event.target.value})
+    };
+
+    private handleAddPossession = () => {
+        this.props.addPossession(this.state.name, this.state.description, this.state.imageUrl, this.props.traderId);
+        this.setState({possessionFormOpen: false});
+    };
+
     private renderPossessionForm(): JSX.Element {
         return (
             <Dialog
@@ -163,6 +189,7 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                         margin="dense"
                         id="name"
                         label="Name"
+                        onChange={this.handleNameChange}
                         type="name"
                         fullWidth={true}
                     />
@@ -171,7 +198,7 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                         margin="dense"
                         id="description"
                         label="Description"
-                        type="description"
+                        onChange={this.handleDescriptionChange}
                         fullWidth={true}
                     />
                     <TextField
@@ -179,7 +206,7 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                         margin="dense"
                         id="imageUrl"
                         label="Image URL"
-                        type="imageUrl"
+                        onChange={this.handleImageUrlChange}
                         fullWidth={true}
                     />
                 </DialogContent>
@@ -187,7 +214,7 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                     <Button onClick={this.handlePossessionFormClose} color="primary">
                         Cancel
                     </Button>
-                    <Button onClick={this.handlePossessionFormClose} color="primary">
+                    <Button onClick={this.handleAddPossession} color="primary">
                         Add
                     </Button>
                 </DialogActions>
@@ -195,13 +222,17 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
         );
     }
 
+    public componentDidMount() {
+        this.props.fetchPossessions(this.props.traderId);
+    }
+
     public render(): JSX.Element {
-        const {classes} = this.props;
+        const {classes, possessions} = this.props;
 
         return (
             <div>
                 <Grid container={true} className={classes.root} justify="center" spacing={16}>
-                    {this.props.possessions.map((p: Possession) => (
+                    {possessions.map((p: Possession) => (
                         <Grid item={true}>
                             <Card className={classes.card}>
                                 <CardActionArea>
@@ -231,7 +262,8 @@ class PossessionsPage extends React.Component<PossessionsPageProps, PossessionsP
                         </Grid>
                     ))}
                 </Grid>
-                <Button onClick={this.handlePossessionFormClickOpen} variant="fab" color="secondary" aria-label="Add" className={classes.button}>
+                <Button onClick={this.handlePossessionFormClickOpen} variant="fab" color="secondary" aria-label="Add"
+                        className={classes.button}>
                     <AddIcon />
                 </Button>
                 {this.renderTransferForm()}
@@ -272,7 +304,13 @@ const styles = {
 };
 
 const mapStateToProps = (state: AppState) => ({
-    possessions: getPossessions(state)
+    traderId: state.authentication.traderId,
+    possessions: state.possessions
 });
 
-export default connect(mapStateToProps)(withStyles(styles as any, {withTheme: true})(PossessionsPage as any) as any);
+const mapDispatchToProps = {
+    fetchPossessions,
+    addPossession,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles as any, {withTheme: true})(PossessionsPage as any) as any);

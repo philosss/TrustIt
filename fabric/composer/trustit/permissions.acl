@@ -1,18 +1,64 @@
 /**
- * Access control rules for tutorial-network
+ * TrustIt access control list.
  */
-rule Default {
-    description: "Allow all participants access to all resources"
-    participant: "ANY"
+
+ rule R3_TradersSeeOwnHistoryOnly {
+   description: "Traders should be able to see the history of their own transactions only"
+   participant(t): "org.upm.trustit.network.Trader"
+   operation: READ
+   resource(v): "org.hyperledger.composer.system.HistorianRecord"
+   condition: (v.participantInvoking.getIdentifier() != t.getIdentifier())
+   action: DENY
+ }
+
+ rule R2_EveryTraderCanSubmitTransactions {
+     description: "Allow all trading participants to submit transactions"
+     participant: "org.upm.trustit.network.Trader"
+     operation: CREATE
+     resource: "org.upm.trustit.network.Trade"
+     action: ALLOW
+ }
+
+ rule R1a_TraderSeeUpdateThemselvesOnly {
+   description: "Trader can see and update their own record only"
+   participant(t): "org.upm.trustit.network.Trader"
+   operation: READ, UPDATE
+   resource(v): "org.upm.trustit.network.Trader"
+   condition: (v.getIdentifier() == t.getIdentifier())
+   action: ALLOW
+ }
+
+ rule R1b_TraderHasFullAccessToTheirCommodities {
+   description: "Trader can see/work with their own Commodities"
+   participant(t): "org.upm.trustit.network.Trader"
+   operation: ALL
+   resource(c): "org.upm.trustit.network.Good"
+   condition: (c.owner.getIdentifier() == t.getIdentifier())
+   action: ALLOW
+ }
+
+ rule R1c_AfterIssuedTransactionCutAccess {
+     description: "Once a trader has issued a transaction to transfer the ownership he cannot modify the asset anymore"
+     participant(m): "org.upm.trustit.network.Trader"
+     operation: UPDATE
+     resource(v): "org.upm.trustit.network.Good"
+     transaction(tx): "org.upm.trustit.network.Trade"
+     condition: (v.owner.getIdentifier() == m.getIdentifier())
+     action: DENY
+ }
+
+rule R0_NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
     operation: ALL
-    resource: "org.upm.trustit.network.*"
+    resource: "**"
     action: ALLOW
 }
 
-rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "ANY"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.**"
-  action: ALLOW
+rule R0_NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
+    action: ALLOW
 }

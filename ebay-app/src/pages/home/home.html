@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-icon name="search"></ion-icon> Search Results: Bikes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+
+  <div *ngIf="products">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-item class="products-list" *ngFor="let product of products" (click)="productSelected($event, product)" text-wrap fxFlex>
+            <img width="30%" src="{{BaseURL + product.image}}" item-start>
+            <h2 class="product-title">{{product.name}}</h2>
+            <h1 class="price-tag" text-wrap>  €{{product.price}}</h1>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div [hidden]="products || errMess" text-center>
+    <ion-spinner></ion-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</ion-content>

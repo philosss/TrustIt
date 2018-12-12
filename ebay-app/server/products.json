@@ -1,0 +1,49 @@
+{
+  "products" : [
+    {
+      "id": "BIKE1",
+      "name": "2015 Bianchi Intrepida Dama Bianca Road Bike 54cm Medium Carbon Shimano 105",
+      "image": "images/0.jpg",
+      "category": "Bikes",
+      "label": "Bianchi - Road Bike - Racing",
+      "price": "1462.99",
+      "description": "Pre-Owned. This bicycle is backed by the TPC Quality Assurance program. This bicycle has been professionally serviced by our mechanics. Light wear and tear from cable rub, heel rub, chain, etc. Some chips and scratching on shifters."
+    },
+    {
+      "id": "BIKE2",
+      "name": "3 Colors City Bicycle Lady Bike Adult Recreational Riding 24",
+      "image": "images/1.jpg",
+      "category": "Bikes",
+      "label": "Brand New",
+      "price": "350.90",
+      "description": "* lightweight manual constructed step steel frame design for upright commuter, recreational riding and exercise. * front and rear linear pull brake to ensure your safety and control your ride at any time."
+    },
+    {
+      "id": "BIKE3",
+      "name": "WOO HOO BIKES - PINKY 19 - Fixed Gear Bicycle, Fixie, One Gear, Track Bike",
+      "image": "images/2.jpg",
+      "category": "Bikes",
+      "label": "Brand New",
+      "price": "429.00",
+      "description": "Frame Material: Steel, Color: White, Size: 19, Reach / Top Tube Lenght: 540 mm (center to center)"
+    },
+    {
+      "id": "BIKE4",
+      "name": "7.6kg Shimano 6770 Di2 Carbon Road Bike Frame Wheel Crank Matt Electronic 56cm",
+      "image": "images/3.jpg",
+      "category": "Bikes",
+      "label": "New",
+      "price": "2298.00",
+      "description": "A brand-new, unused, unopened, undamaged item in its original packaging (where packaging is applicable). Packaging should be the same as what is found in a retail store."
+    },
+    {
+      "id": "BIKE5",
+      "name": "26 Mongoose Men's Brutus Fat Tire Bike, Red1",
+      "image": "images/4.jpg",
+      "category": "Bikes",
+      "label": "New",
+      "price": "79.00",
+      "description": "Mongoose steel fat bike cruiser frame is sturdy and durable, with plenty of clearance for any terrain. Reliable coaster brake for quick, precise stops. Fat, knobby 4 inch wide mountain tires roll over anything in their path. 4 inch alloy rims are light and strong for added durability. All-terrain Big cruiser handlebars keep you in complete control."
+    }
+  ]
+}

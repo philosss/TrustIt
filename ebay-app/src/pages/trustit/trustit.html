@@ -1,0 +1,60 @@
+<!--
+  Generated template for the TrustitPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar color="primary-pale">
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary">Close</span>
+      </button>
+    </ion-buttons>
+    <ion-title>TrustIt Chain</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="chain || current">
+	  <ion-row *ngFor="let item of chain">
+	    <ion-card *ngIf="chain">
+	      <ion-card-title class="center">
+          {{ item.type }} - {{ item.owner }}
+        </ion-card-title>
+	      <p class="center">
+          <b>Acquired: </b>{{ item.timestamp | date:'medium' }}
+        </p>
+	    </ion-card>
+    </ion-row>
+    <ion-row *ngIf="current && current.owner">
+      <ion-card>
+        <ion-card-title class="center">
+          <b>{{ current.type }} - {{ current.owner }}</b>
+          <p>Current owner</p>
+        </ion-card-title>
+        <p class="center">
+          <b>Acquired: </b>{{ current.timestamp | date:'medium' }}
+        </p>
+      </ion-card>
+    </ion-row>
+    <ion-row *ngIf="!current.owner">
+      <ion-card-title class="center">
+        <ion-card-title class="center" >
+          <b>Not Registered with TrustIt</b>
+        </ion-card-title>
+        <p>Unfortunately, TrustIt cannot verify the chain of owners.</p>
+      </ion-card-title>
+    </ion-row>
+  </div>
+  <div [hidden]="chain || current || errMess" text-center>
+    <ion-spinner></ion-spinner>
+    <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
+  </div>
+
+</ion-content>

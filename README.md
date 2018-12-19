@@ -12,6 +12,9 @@ Moreover, we store the purchase dates of new products so that users do not have 
 Authors: [@boyraaijmakers](https://github.com/boyraaijmakers) [@mkpaszkiewicz](https://github.com/mkpaszkiewicz)  [@philosss](https://github.com/philosss)  [@jackiefeen](https://github.com/jackiefeen)
 
 
+Ranked 1st 🥇 @ TADHack 2018 - Evaluated full marks: 10/10
+
+
 Universidad Politécnica de Madrid, Spain 🌞
 
 
@@ -37,10 +40,13 @@ composer card import --file networkadmin.card
 composer network ping --card admin@trustit
 ```
 
+## Presentation 🥇
+- [Link](https://github.com/philosss/TrustIt/blob/master/FinalPresentationTrustIt.pdf)
+
 
 ## Palette of Colors
 - Background gradient from ![#028090](https://placehold.it/15/028090/000000?text=+) `#028090` to ![#05668D](https://placehold.it/15/05668D/000000?text=+) `#05668D`, angle `270°`
-- Presentation logo ![#DEDEDE](https://placehold.it/15/DEDEDE/000000?text=+) `#DEDEDE`
+- Presentation logo ![#F1F1F1](https://placehold.it/15/DEDEDE/000000?text=+) `#F1F1F1`
 - Logo ![#F8F5F5](https://placehold.it/15/F8F5F5/000000?text=+) `#F8F5F5`
 
 
